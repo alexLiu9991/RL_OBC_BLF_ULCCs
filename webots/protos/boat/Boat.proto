@@ -1,0 +1,262 @@
+#VRML_SIM R2023b utf8
+# license: Apache License 2.0
+# license url: http://www.apache.org/licenses/LICENSE-2.0
+# This is a proto file for Webots for the Boat
+
+PROTO Boat [
+  field  SFVec3f     translation     0 0 0
+  field  SFRotation  rotation        0 0 1 0
+  field  SFString    name            "Boat"  # Is `Robot.name`.
+  field  SFString    controller      "void"     # Is `Robot.controller`.
+  field  MFString    controllerArgs  []         # Is `Robot.controllerArgs`.
+  field  SFString    customData      ""         # Is `Robot.customData`.
+  field  SFBool      supervisor      FALSE      # Is `Robot.supervisor`.
+  field  SFBool      synchronization TRUE       # Is `Robot.synchronization`.
+  field  SFBool      selfCollision   FALSE      # Is `Robot.selfCollision`.
+]
+{
+  Robot {
+    translation IS translation
+    rotation IS rotation
+    controller IS controller
+    controllerArgs IS controllerArgs
+    customData IS customData
+    supervisor IS supervisor
+    synchronization IS synchronization
+    selfCollision IS selfCollision
+    children [
+      Shape {
+        appearance DEF base_link_material PBRAppearance {
+          baseColor 0.768627 0.207843 0.152941
+          roughness 1.000000
+          metalness 0
+        }
+        geometry DEF base_link Mesh {
+          url "./meshes/base_link.STL"
+        }
+      }
+      Solid {
+        children [
+          Shape {
+            appearance DEF up_boat_Link_material PBRAppearance {
+              baseColor 0.984314 0.980392 0.960784
+              roughness 1.000000
+              metalness 0
+            }
+            geometry DEF up_boat_Link Mesh {
+              url "./meshes/up_boat_Link.STL"
+            }
+          }
+          HingeJoint {
+            jointParameters HingeJointParameters {
+              axis 0.000000 0.000000 1.000000
+              anchor 0.600000 0.000000 0.000000
+            }
+            device [
+            ]
+            endPoint Solid {
+              translation 0.600000 0.000000 0.000000
+              children [
+                Shape {
+                  appearance DEF lidar_Link_material PBRAppearance {
+                    baseColor 0.349020 0.349020 0.349020
+                    roughness 1.000000
+                    metalness 0
+                  }
+                  geometry DEF lidar_Link Mesh {
+                    url "./meshes/lidar_Link.STL"
+                  }
+                }
+                Lidar {
+                  children [
+                    Shape {
+                      appearance USE lidar_Link_material
+                      geometry USE lidar_Link
+                    }
+                  ]
+                  name "lidar_device"
+                  horizontalResolution 360
+                  fieldOfView 6.28319
+                  numberOfLayers 1
+                  minRange 0.1
+                  maxRange 12.0
+                  rotation 0 1 0 0
+                  type "rotating"
+                }
+              ]
+              name "lidar_Link"
+              # boundingObject USE lidar_Link
+              # physics Physics {
+              #   density -1
+              #   mass 0.636270
+              #   centerOfMass [ -0.000000 -0.000000 0.038934 ]
+              #   inertiaMatrix [
+              #     5.616576e-04 5.616576e-04 8.271271e-04
+              #     -1.612538e-36 -2.852111e-22 -1.550682e-36
+              #   ]
+              # }
+            }
+          }
+          HingeJoint {
+            jointParameters HingeJointParameters {
+              axis 0.000000 0.000000 1.000000
+              anchor 0.040000 0.000000 0.000000
+            }
+            device [
+              RotationalMotor {
+                name "antenna"
+                maxTorque 10000
+              }
+              PositionSensor {
+                name "antenna_sensor"
+              }
+            ]
+            endPoint Solid {
+              translation 0.040000 0.000000 0.000000
+              children [
+                Shape {
+                  appearance DEF antenna_Link_material PBRAppearance {
+                    baseColor 0.768627 0.207843 0.152941
+                    roughness 1.000000
+                    metalness 0
+                  }
+                  geometry DEF antenna_Link Mesh {
+                    url "./meshes/antenna_Link.STL"
+                  }
+                }
+              ]
+              name "antenna_Link"
+              # boundingObject USE antenna_Link
+              # physics Physics {
+              #   density -1
+              #   mass 0.027286
+              #   centerOfMass [ 0.000000 -0.000000 0.027481 ]
+              #   inertiaMatrix [
+              #     9.167097e-06 9.167097e-06 2.079163e-06
+              #     -6.457199e-39 4.067211e-23 -5.495737e-24
+              #   ]
+              # }
+            }
+          }
+        ]
+        name "up_boat_Link"
+        # boundingObject USE up_boat_Link
+        # physics Physics {
+        #   density -1
+        #   mass 0.567596
+        #   centerOfMass [ 0.375517 -0.016767 -0.004801 ]
+        #   inertiaMatrix [
+        #     5.291364e-03 3.906631e-02 4.520853e-02
+        #     3.317402e-03 -3.090559e-03 -6.518907e-04
+        #   ]
+        # }
+      }
+      HingeJoint {
+        jointParameters HingeJointParameters {
+          axis -1.000000 0.000000 0.000000
+          anchor -0.016700 0.120000 -0.121000
+        }
+        device [
+          RotationalMotor {
+            name "left_propeller"
+            maxTorque 10000
+          }
+          PositionSensor {
+            name "left_propeller_sensor"
+          }
+        ]
+        endPoint Solid {
+          translation -0.016700 0.120000 -0.121000
+          children [
+            Shape {
+              appearance DEF left_propeller_Link_material PBRAppearance {
+                baseColor 0.380392 0.478431 0.788235
+                roughness 1.000000
+                metalness 0
+              }
+              geometry DEF left_propeller_Link Mesh {
+                url "./meshes/left_propeller_Link.STL"
+              }
+            }
+          ]
+          name "left_propeller_Link"
+          # boundingObject USE left_propeller_Link
+          # physics Physics {
+          #   density -1
+          #   mass 0.020625
+          #   centerOfMass [ 0.004058 -0.000000 -0.000000 ]
+          #   inertiaMatrix [
+          #     1.992999e-05 1.070946e-05 1.070952e-05
+          #     -3.401101e-11 -1.147697e-13 -2.483067e-12
+          #   ]
+          # }
+        }
+      }
+      HingeJoint {
+        jointParameters HingeJointParameters {
+          axis -1.000000 0.000000 0.000000
+          anchor -0.016700 -0.120000 -0.121000
+        }
+        device [
+          RotationalMotor {
+            name "right_propeller"
+            maxTorque 10000
+          }
+          PositionSensor {
+            name "right_propeller_sensor"
+          }
+        ]
+        endPoint Solid {
+          translation -0.016700 -0.120000 -0.121000
+          children [
+            Shape {
+              appearance DEF right_propeller_Link_material PBRAppearance {
+                baseColor 0.549020 0.180392 0.180392
+                roughness 1.000000
+                metalness 0
+              }
+              geometry DEF right_propeller_Link Mesh {
+                url "./meshes/right_propeller_Link.STL"
+              }
+            }
+          ]
+          name "right_propeller_Link"
+          # boundingObject USE right_propeller_Link
+          # physics Physics {
+          #   density -1
+          #   mass 0.020587
+          #   centerOfMass [ 0.004057 -0.000000 0.000000 ]
+          #   inertiaMatrix [
+          #     1.988885e-05 1.068862e-05 1.068855e-05
+          #     -1.806198e-12 3.915571e-12 -2.377460e-13
+          #   ]
+          # }
+        }
+      }
+    ]
+    name IS name
+    immersionProperties [
+      ImmersionProperties {
+        fluidName "fluid"
+        # dragForceCoefficients 0 0.1 0
+        # dragTorqueCoefficients 0 0.1 0
+        viscousResistanceTorqueCoefficient 0.005
+      }
+    ]
+    physics Physics {
+      mass 30
+      centerOfMass [
+        0.3 0 0.2
+      ]
+    }
+    boundingObject Transform {
+      translation 0.3 0 0
+      rotation 0 0 1 -1.5708
+      children [
+        Box {
+          size 0.600 0.600 0.40
+        }
+      ]
+    }
+  }
+}

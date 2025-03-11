@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot name="boat">
+  <link name="base_link">
+    <inertial>
+      <origin xyz="0.284 0 -0.132" rpy="0 0 0" />
+      <mass value="3.17" />
+      <inertia ixx="0.0123" ixy="-6.28036543044152E-06" ixz="-0.000274921101758748" iyy="0.0892089672897745" iyz="1.01277067585046E-07" izz="0.101063632594761" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="./meshes/base_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.768627450980392 0.207843137254902 0.152941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="./meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="up_boat_Link">
+    <inertial>
+      <origin xyz="0.375516602465638 -0.0167667696193657 -0.00480118567963011" rpy="0 0 0" />
+      <mass value="0.567595899878279" />
+      <inertia ixx="0.0052913644908439" ixy="0.00331740178473573" ixz="-0.00309055908786363" iyy="0.0390663050974885" iyz="-0.000651890740173608" izz="0.0452085280601355" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="./meshes/up_boat_Link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.984313725490196 0.980392156862745 0.96078431372549 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="./meshes/up_boat_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="up_boat" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="up_boat_Link" />
+    <axis xyz="0 0 0" />
+  </joint>
+  <link name="lidar_Link">
+    <inertial>
+      <origin xyz="-1.11022302462516E-16 -1.09215657888062E-34 0.0389335009107896" rpy="0 0 0" />
+      <mass value="0.636270245456481" />
+      <inertia ixx="0.000561657606085588" ixy="-1.61253751224975E-36" ixz="-2.85211104607215E-22" iyy="0.000561657606085588" iyz="-1.5506820060332E-36" izz="0.000827127114197639" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="./meshes/lidar_Link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.349019607843137 0.349019607843137 0.349019607843137 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="./meshes/lidar_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="lidar" type="continuous">
+    <origin xyz="0.6 0 0" rpy="0 0 0" />
+    <parent link="up_boat_Link" />
+    <child link="lidar_Link" />
+    <axis xyz="0 0 1" />
+  </joint>
+  <link name="antenna_Link">
+    <inertial>
+      <origin xyz="1.38777878078145E-17 -7.10593666548396E-21 0.0274813489480001" rpy="0 0 0" />
+      <mass value="0.0272857956255406" />
+      <inertia ixx="9.16709726912173E-06" ixy="-6.45719944958276E-39" ixz="4.06721073304916E-23" iyy="9.16709726912173E-06" iyz="-5.49573703763279E-24" izz="2.07916278604364E-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="./meshes/antenna_Link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="./meshes/antenna_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="antenna" type="continuous">
+    <origin xyz="0.04 0 0" rpy="0 0 0" />
+    <parent link="up_boat_Link" />
+    <child link="antenna_Link" />
+    <axis xyz="0 0 1" />
+  </joint>
+  <link name="left_propeller_Link">
+    <inertial>
+      <origin xyz="0.0040577390283354 -1.87912259641543E-08 -1.33063577961723E-07" rpy="0 0 0" />
+      <mass value="0.0206248292296209" />
+      <inertia ixx="1.99299925959641E-05" ixy="-3.40110146967658E-11" ixz="-1.14769677812519E-13" iyy="1.07094586041768E-05" iyz="-2.48306717133364E-12" izz="1.07095211964427E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="./meshes/left_propeller_Link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.380392156862745 0.47843137254902 0.788235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="./meshes/left_propeller_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="left_propeller" type="continuous">
+    <origin xyz="-0.0167 0.12 -0.121" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="left_propeller_Link" />
+    <axis xyz="-1 0 0" />
+  </joint>
+  <link name="right_propeller_Link">
+    <inertial>
+      <origin xyz="0.00405741276803714 -3.45063974893645E-08 9.83692173273099E-08" rpy="0 0 0" />
+      <mass value="0.0205874380284526" />
+      <inertia ixx="1.98888508605722E-05" ixy="-1.80619804608264E-12" ixz="3.91557136808189E-12" iyy="1.06886209355234E-05" iyz="-2.37745989549072E-13" izz="1.06885469233796E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="./meshes/right_propeller_Link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.549019607843137 0.180392156862745 0.180392156862745 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="./meshes/right_propeller_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="right_propeller" type="continuous">
+    <origin xyz="-0.0167 -0.12 -0.121" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="right_propeller_Link" />
+    <axis xyz="-1 0 0" />
+  </joint>
+</robot>

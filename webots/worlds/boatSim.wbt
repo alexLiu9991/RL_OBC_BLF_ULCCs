@@ -1,0 +1,275 @@
+#VRML_SIM R2023a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "../protos/boat/Boat.proto"
+
+WorldInfo {
+  ERP 0.1
+  basicTimeStep 10
+}
+Viewpoint {
+  orientation -0.18125509170713752 0.3199744513206916 0.9299263101086342 1.0942449286735771
+  position -8.126078432875588 -17.038832449221868 10.75925509650201
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  translation 10 10 0
+  floorSize 20 20
+  floorTileSize 20 20
+  wallHeight 0.8
+}
+DEF STILL_WATER Fluid {
+  translation 10 10 0.36
+  children [
+    DEF S Shape {
+      appearance DEF WATER_APPEARANCE PBRAppearance {
+        baseColor 0 0.502 1
+        transparency 0.001
+        roughness 0.001
+      }
+      geometry Box {
+        size 20 20 0.7
+      }
+    }
+  ]
+  viscosity 0.1
+  boundingObject USE S
+  locked TRUE
+}
+DEF buoy1 Solid {
+  translation 1.88 17.88 0.68
+  rotation 0 1 0 0
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 1 0 0
+      }
+      geometry Mesh {
+        url [
+          "../mesh/Starboard Bifurcation Buoy.STL"
+        ]
+      }
+    }
+  ]
+}
+DEF buoy2 Solid {
+  translation 5.88 17.88 0.68
+  rotation 0 1 0 0
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 1 0 0
+      }
+      geometry Mesh {
+        url [
+          "../mesh/Starboard Bifurcation Buoy.STL"
+        ]
+      }
+    }
+  ]
+  name "solid(1)"
+}
+DEF buoy3 Solid {
+  translation 5.88 1.88 0.68
+  rotation 0 1 0 0
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 1 0 0
+      }
+      geometry Mesh {
+        url [
+          "../mesh/Starboard Bifurcation Buoy.STL"
+        ]
+      }
+    }
+  ]
+  name "solid(2)"
+}
+DEF buoy4 Solid {
+  translation 9.88 1.88 0.68
+  rotation 0 1 0 0
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 1 0 0
+      }
+      geometry Mesh {
+        url [
+          "../mesh/Starboard Bifurcation Buoy.STL"
+        ]
+      }
+    }
+  ]
+  name "solid(3)"
+}
+DEF buoy5 Solid {
+  translation 9.88 17.88 0.68
+  rotation 0 1 0 0
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 1 0 0
+      }
+      geometry Mesh {
+        url [
+          "../mesh/Starboard Bifurcation Buoy.STL"
+        ]
+      }
+    }
+  ]
+  name "solid(4)"
+}
+DEF buoy6 Solid {
+  translation 13.88 17.88 0.68
+  rotation 0 1 0 0
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 1 0 0
+      }
+      geometry Mesh {
+        url [
+          "../mesh/Starboard Bifurcation Buoy.STL"
+        ]
+      }
+    }
+  ]
+  name "solid(5)"
+}
+DEF buoy7 Solid {
+  translation 13.88 1.88 0.68
+  rotation 0 1 0 0
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 1 0 0
+      }
+      geometry Mesh {
+        url [
+          "../mesh/Starboard Bifurcation Buoy.STL"
+        ]
+      }
+    }
+  ]
+  name "solid(6)"
+}
+DEF buoy8 Solid {
+  translation 17.88 1.88 0.68
+  rotation 0 1 0 0
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 1 0 0
+      }
+      geometry Mesh {
+        url [
+          "../mesh/Starboard Bifurcation Buoy.STL"
+        ]
+      }
+    }
+  ]
+  name "solid(7)"
+}
+DEF buoy9 Solid {
+  translation 17.88 17.88 0.68
+  rotation 0 1 0 0
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 1 0 0
+      }
+      geometry Mesh {
+        url [
+          "../mesh/Starboard Bifurcation Buoy.STL"
+        ]
+      }
+    }
+  ]
+  name "solid(8)"
+}
+DEF WATER_FLOW_ANIMATION Robot {
+  translation 9.97 10 0.44
+  children [
+    DEF LOWER_RAMP_ANIMATION Display {
+      translation 0 0 -0.2
+      scale 10 10 10
+      children [
+        DEF S Shape {
+          appearance PBRAppearance {
+            baseColor 0.5 1 1
+            baseColorMap ImageTexture {
+              url [
+                "../controllers/waterFlowAnimationPy/water_flow.png"
+              ]
+            }
+            transparency 0.6000000238418579
+            roughness 0.5
+            metalness 0
+          }
+          geometry IndexedFaceSet {
+            coord Coordinate {
+              point [
+                -1 1 0.05
+                -1 -1 0.05
+                1 -1 0.05
+                1 1 0.05
+              ]
+            }
+            texCoord TextureCoordinate {
+              point [
+                1 1
+                0 1
+                0 0
+                1 0
+              ]
+            }
+            coordIndex [
+              0, 1, 2, 3, -1
+            ]
+            texCoordIndex [
+              0, 1, 2, 3, -1
+            ]
+          }
+        }
+      ]
+      name "water display"
+      width 512
+      height 512
+    }
+  ]
+  name "water"
+  controller "waterFlowAnimationPy"
+  supervisor TRUE
+}
+DEF WAYPOINTS Shape {
+  appearance Appearance {
+  }
+  geometry IndexedLineSet {
+    coord Coordinate {
+      point [
+        2 18 0.8
+        6 18 0.8
+        6 2 0.8
+        10 2 0.8
+        10 18 0.8
+        14 18 0.8
+        14 2 0.8
+        18 2 0.8
+        18 18 0.8
+      ]
+    }
+    coordIndex [
+      0, 0, -1, 0, 1, -1, 1, 2, -1, 2, 3, -1, 3, 4, -1, 4, 5, -1, 5, 6, -1, 6, 7, -1, 7, 8, -1
+    ]
+  }
+}
+Boat {
+  translation 2.43 2.13 0.86
+  rotation 0 0 1 1.5708
+}
